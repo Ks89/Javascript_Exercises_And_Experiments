@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+
+
+        <script>
+          
+            
+            function arrayToList(array) {
+                var dataStructureTesta = { 
+                    value : array[0],
+                    rest : null
+                };
+                
+                var prev = dataStructureTesta;
+                
+                for (var i = 1; i < array.length; i++) {
+                    var dataStructure = { 
+                        value : array[i],
+                        rest : null
+                    };
+                    prev.rest = dataStructure;
+                    
+                    var prev = dataStructure;
+                    
+                }
+                return dataStructureTesta;
+            };
+            
+            
+            function listToArray(list) {
+                var array = [];
+                array.push(list.value);
+                while(list.rest !== null) {
+                    list = list.rest;
+                    array.push(list.value);
+                }
+                return array;
+            }
+            
+            //ce ne sono altre due di funzioni da fare, ma non ho piu voglia
+          
+            var array = [1,2,3];
+            console.log(arrayToList(array));
+            console.log(listToArray(arrayToList(array)));
+        </script>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+
+
+        <script>
+
+            //fatto io ma con un'occhiata alla traccia per capire cosa chiedeva
+
+            function every(array, predicate) {
+                for (var i = 0; i < array.length; i++) {
+                    if (!predicate(array[i])) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function some(array, predicate) {
+                for (var i = 0; i < array.length; i++) {
+                    if (predicate(array[i])) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+
+            //questi li ho copiati diretti dalla soluzione per comodita'
+            console.log(every([NaN, NaN, NaN], isNaN));
+            console.log(every([NaN, NaN, 4], isNaN));
+            console.log(some([NaN, 3, 4], isNaN));
+            console.log(some([2, 3, 4], isNaN));
+
+        </script>
+
+
+
+    </body>
+</html>

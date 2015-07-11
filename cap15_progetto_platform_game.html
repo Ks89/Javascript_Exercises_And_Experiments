@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <script>
+            //array di array
+            var simpleLevelPlan = [   //    ^ 
+                "                      ",// | 
+                "                      ",// |
+                "  x              = x  ",// |
+                "  x         o o    x  ",// | HEIGHT
+                "  x @      xxxxx   x  ",// |
+                "  xxxxx            x  ",// |
+                "      x!!!!!!!!!!!!x  ",// |
+                "      xxxxxxxxxxxxxx  ",// |
+                "                      " // |
+            ];// <------------------------>
+                         //WIDTH
+            
+            function Level(plan) {
+                //accede al 1o array e ne da la lunghezza
+                this.width = plan[0].length;
+                this.height = plan.length;
+                
+                this.grid = [];
+                this.actors = [];
+
+                for (var y = 0; y < this.height; y++) { //righe
+                    //ad ogni ciclo ci metto la riga in line
+                    var line = plan[y];
+                    var gridLine = [];
+                    for (var x = 0; x < this.width; x++) { //colonne
+                        //ad ogni ciclo interno prendo un carattere della riga in "line"
+                        var ch = line[x];
+                        var fieldType = null;
+                        //mi da l9oggetto che puo' essere Player, Coin o Lava.
+                        //actorChars e' una funzione che restituisce oggetti
+                        var Actor = actorChars[ch];
+                        if (Actor)
+                            //crea nuovo Actor e lo mette nel vettore con 
+                            //coordinate x,y e il carattere trovato in plan
+                            this.actors.push(new Actor(new Vector(x, y), ch));
+                        else if (ch == "x")
+                            fieldType = "wall";
+                        else if (ch == "!")
+                            fieldType = "lava";
+                        gridLine.push(fieldType);
+                    }
+                    //dato in "plan" la mappa del livello questo metodo crea "grid" 
+                    //sempre in array di array ma con contenuto nelle celle: wall,lava,null
+                    this.grid.push(gridLine);
+                }
+                
+                //per trovare tra gli actors il player e salvarlo in player
+                //uso filter sull'array actors, ritornando l'elemento di type 
+                //"player". Questo "type" e' una variabile in Actor con assegnata una stringa.
+                //NB: Suppongo che ci sia solo un player nel livello, cioe' che
+                //la mappa del livello sia stata creata in modo corretto.
+                this.player = this.actors.filter(function(actor) {
+                    return actor.type == "player";
+                })[0];
+                
+                //per sapere se il livello e' stato completato, cioe' 
+                //se player ha vinto o perso.
+                //
+                //finishDelay=usata per tenere attivo il livello 
+                //per una piccola animazione
+                this.status = this.finishDelay = null;
+            }
+
+            //metodo per scoprire se il livello e' finito
+            Level.prototype.isFinished = function() {
+                return this.status != null && this.finishDelay < 0;
+            };
+
+
+            function Vector(x, y) {
+                this.x = x; this.y = y;
+            }
+            
+            Vector.prototype.plus = function(other) {
+                return new Vector(this.x + other.x, this.y + other.y);
+            };
+            
+            //metodo utile quando serve moltiplicare un vettore velocita' 
+            //per un intervallo di tempo per ottenere la distanza percorsa
+            //durante quel tempo
+            Vector.prototype.times = function(factor) {
+                return new Vector(this.x * factor, this.y * factor);
+            };
+
+
+            var actorChars = {
+                "@": Player,
+                "o": Coin,
+                "=": Lava, "|": Lava, "v": Lava
+            };
+
+            
+            //il giocatore e' alto 1,5 quadretti da dove appare il carattere @
+            function Player(pos) {
+                this.pos = pos.plus(new Vector(0, -0.5));
+                this.size = new Vector(0.8, 1.5);
+                //velocita' corrente che permette di simulare movimento e gravita'
+                this.speed = new Vector(0, 0);
+            }
+            
+            //il tipo di Player e' "player" come stringa
+            Player.prototype.type = "player";
+
+            //La creazione della lava dipende dal carattere "ch"
+            //cioe' se e' fissa o si muove
+            function Lava(pos, ch) {
+                this.pos = pos;
+                this.size = new Vector(1, 1);
+                if (ch == "=") {
+                    this.speed = new Vector(2, 0);
+                } else if (ch == "|") {
+                    this.speed = new Vector(0, 2);
+                } else if (ch == "v") {
+                    this.speed = new Vector(0, 3);
+                    this.repeatPos = pos;
+                }
+            }
+            //il tipo di Lava e' "lava" come stringa
+            Lava.prototype.type = "lava";
+
+            function Coin(pos) {
+                this.basePos = this.pos = pos.plus(new Vector(0.2, 0.1));
+                this.size = new Vector(0.6, 0.6);
+                //wobble permette di fare un leggero movimento avanti indietro 
+                //delle monete, per rendere tutto meno statico
+                //si usa Math.random() per evitare che tutte le monete
+                //si muovino in modo sincronizzato. Cioe' moltiplico random
+                //per la larghezza della fase del seno, cioe' 2PIGreco
+                this.wobble = Math.random() * Math.PI * 2;
+            }
+            
+            Coin.prototype.type = "coin";
+
+            var simpleLevel = new Level(simpleLevelPlan);  
+            console.log(simpleLevel.width, "by", simpleLevel.height);
+        </script>
+    </body>
+</html>

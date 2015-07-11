@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+    <!-- Focus example with custom order with tabindex -->
+
+        <input type="text"> length: <span id="length">0</span>
+        <script>
+            var text = document.querySelector("input");
+            var output = document.querySelector("#length");
+            text.addEventListener("input", function() {
+                output.textContent = text.value.length;
+            });
+        </script>
+
+        
+    </body>
+</html>

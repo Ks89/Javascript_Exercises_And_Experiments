@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <p>Name: <input type="text" data-help="Your full name"></p>
+        <p>Age <input type="text" data-help="Age in years"></p>
+        <p id="help"></p>
+        
+        <script>
+            var help = document.querySelector("#help");
+            var fields = document.querySelectorAll("input");
+            for(var i=0; i<fields.length; i++) {
+                fields[i].addEventListener("focus",function(event) {
+                   var text = event.target.getAttribute("data-help");
+                   help.textContent = text;
+                });
+                fields[i].addEventListener("blur",function (event){
+                    help.textContent = "";
+                });
+            }
+        </script>
+        
+    </body>
+</html>

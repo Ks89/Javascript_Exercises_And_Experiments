@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <h1>My home page</h1>
+        
+        <blockquote id="quote">
+            No book can ever be finished. While working on it we learn just enough 
+            to find it immature the moment we turn away from it.
+        </blockquote>
+        
+        
+        <script>
+            //type e' il tag html
+            //il testo che voglio aggiungere nel tag e' passato come argomenti aggiunti nella funzione
+            //anche se non specificati, perche' in numero variabile.
+            //quindi se passo solo un tag e una stringa crea il nodo con quel tag e il testo dentro,
+            //ma se passo a questa funzione la funzione stessa come argomento, nella funzione piu' interna
+            //crea l'elemento, che in quella esterna (non essendo di tipo "String" viene semplicemente
+            //ritornato.
+            function elt(type) {
+                var node = document.createElement(type);
+                for(var i=1; i<arguments.length;i++) {
+                    var child = arguments[i];
+                    if(typeof child == "string") 
+                        child = document.createTextNode(child);
+                    node.appendChild(child);
+                }
+                return node;
+            }
+            
+            //qui chiamo elf piu' volte, anche passando la funzione negli argomenti
+            //della funzioen stessa.
+            document.getElementById("quote").appendChild(
+                    elt("footer", "---",
+                        elt("strong", "Karl Popper"),
+                        ", preface to the second edition of ",
+                        elt("em", "The Open Society and Its Enemies"),
+                        ", 1950"));
+        </script>
+        
+    </body>
+</html>

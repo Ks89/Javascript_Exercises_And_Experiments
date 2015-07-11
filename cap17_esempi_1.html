@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        
+        <script>
+            var req = new XMLHttpRequest();
+            req.open("GET","xml/fruits.xml",false);
+            req.send(null);
+            console.log(req.responseXML.querySelectorAll("fruit").length);
+        </script>
+        
+        <!-- Better version with JSON -->
+        <script>
+            var req = new XMLHttpRequest();
+            req.open("GET","xml/fruits.json",false);
+            req.send(null);
+            console.log(JSON.parse(req.responseText));
+        </script>
+        
+        <!-- Abstracting requests MA QUESTA NON VA BENE -->
+        <!--
+        <script>
+            function backgroundReadFile(url, callback) {
+                var req = new XMLHttpRequest();
+                    req.open("GET",url,true);
+                    req.addEventListener("load",function() {
+                       callback(req.responseText); 
+                    });
+                    req.send(null);
+            }
+            
+            //la gestione delle eccezioni in casi asinctroni e' piu' 
+            //complesso che in casi sincroni
+            try {
+                backgroundReadFile("xml/fruits.xml", function(text){
+                   if(text !== "expected")
+                        throw new Error("That was unexpected");
+                });
+            } catch (e) {
+                console.log("Catch block");
+            }
+        </script>
+        -->
+        
+        <script>
+            function getURL(url, callback) {
+                var req = new XMLHttpRequest();
+                req.open("GET",url,true);
+                req.addEventListener("load",function() {
+                    if(req.status < 400) callback(req.responseText);
+                    else callback(null, new Error("Request failed: " + req.statusText));
+                });
+                req.addEventListener("error",function() {
+                   callback(null, new Error("Network error")); 
+                });
+                req.send(null);
+                new Promise(function(succeed, fail) {
+                    
+                });
+            }
+            
+            getURL("xml/fruits.xml", function(content, error) {
+                if(error !== null) console.log("Failed to fetch: " + error);
+                else console.log("Conent: " + content);
+            });
+        </script>
+        
+    </body>
+</html>

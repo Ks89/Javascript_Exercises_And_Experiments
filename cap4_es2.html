@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+
+
+        <script>
+
+
+            function reverseArray(array) {
+                var reversedArray = [];
+                for (var i = 0; i < array.length; i++) {
+                    reversedArray[array.length-1-i] = array[i];
+                }
+                return reversedArray;
+            };
+            
+            
+            var reverseArrayInPlace = function(array) {
+                var prev = 0;
+                for (var i = 0; i < Math.floor(array.length / 2); i++) {
+                    prev = array[array.length-1-i];
+                    array[array.length-1-i] = array[i];
+                    array[i] = prev;
+                    console.log[prev];
+                }
+                
+                return array;
+            };
+            
+           
+            
+            var array = [1,2,3,4,5,6];
+            console.log(reverseArray(array));
+            console.log(reverseArrayInPlace(array));
+        </script>
+
+
+
+    </body>
+</html>

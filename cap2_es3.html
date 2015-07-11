@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+        
+        
+    <script>
+        var grid="", row_p="", row_d="";
+        var size = 8;
+        for(var i=1; i<=size / 2; i++) {
+            row_d = row_d + " #";
+        }
+        for(var i=1; i<=size / 2; i++) {
+            row_p = row_p + "# ";
+        }
+        for(var i=1; i<=size; i++) {
+            if(i % 2 === 0) {
+                grid = grid + row_p + "\n";
+            } else {
+                grid = grid + row_d + "\n";
+            }
+        }
+            
+        console.log(grid);
+    </script>
+
+        
+        
+    </body>
+</html>

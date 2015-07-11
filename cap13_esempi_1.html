@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <h1>My home page</h1>
+        <p>Hello, dsjkhdkajs adshfjks fsdhfkjsdhf fsaf</p>
+        <p>dhjsafgasjhfg dsfhjfgdsjhf sdfhsdjfgsdj
+            <a href="http://dasdasd">here</a></p>
+       
+        <p>Secondo script</p>
+        <p><img id="pippo" src="img/pippo.png"></p>
+        
+        <script>
+            //script che individua il primo link della pagina
+            var link = document.body.getElementsByTagName("a")[0];
+            console.log(link.href);
+        </script>
+        
+        <script>
+            //script che ottiene un elemento dall'ID
+            var pippo = document.getElementById("pippo");
+            console.log(pippo.src);
+        </script>
+    </body>
+</html>

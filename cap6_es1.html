@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+
+
+        <script>
+
+            //costruttore oggetto
+            function Vector(x, y) { 
+                this.x = x;
+                this.y = y;
+            }
+            
+            //definisco i metodi
+            Vector.prototype.plus = function(vector) {
+                return new Vector(this.x + vector.x, this.y + vector.y);
+            };
+            
+            Vector.prototype.minus = function(vector) {
+                return new Vector(this.x - vector.x, this.y - vector.y);
+            };
+            
+            
+            //copiato da soluzioni perche' la mia idea e' leggermente diversa
+            Object.defineProperty(Vector.prototype, "length", {
+                get: function() {
+                    return Math.sqrt(this.x * this.x + this.y * this.y);
+                }
+            });
+            
+            //io lo ho fatto cosi' da solo:
+            //Vector.prototype.length = function() {
+            //    return Math.sqrt(Math.pow(this.x - 0 , 2) + Math.pow(this.y - 0 , 2));
+            //};
+            //console.log(new Vector(3,4).length());
+            
+            console.log(new Vector(1,2).plus(new Vector(2,3)));
+            console.log(new Vector(1,2).minus(new Vector(2,3)));
+            console.log(new Vector(3,4).length);
+        </script>
+
+
+
+    </body>
+</html>

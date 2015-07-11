@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+
+
+        <script>
+
+            //esercizio fatto da me
+            function MultiplicationUnitFailure(message) {
+                this.message = message;
+                this.stack = (new Error()).stack;
+            }
+            
+            MultiplicationUnitFailure.prototype = Object.create(Error.prototype);
+            MultiplicationUnitFailure.prototype.name = "MultiplicationUnitFailure";
+            
+            function primitiveMultiply(a,b) {
+                var rand = Math.floor((Math.random() * 10) + 1);
+                if(rand % 2 === 0) {
+                    return a*b;
+                } else {
+                    throw new MultiplicationUnitFailure("Errore moltiplicazione");
+                }
+                return null;
+            };
+            
+            var bool = false;
+            while(!bool) {
+                var result = 0;
+                try {
+                    result = primitiveMultiply(2,3);
+                    console.log("result: " + result);
+                    bool = true;
+                } catch (e) {
+                    if(!(e instanceof MultiplicationUnitFailure)) {
+                        bool = true;
+                        console.log("Errore MultiplicationUnitFailure");
+                    }
+                }
+               
+            }
+            
+            
+        </script>
+
+
+
+    </body>
+</html>

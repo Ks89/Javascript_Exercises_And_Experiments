@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <p style="text-align: center">
+            <img src="img/cat.png" style="position: relative">
+        </p>
+        
+        
+        <script>
+            var cat = document.querySelector("img");
+            var angle = 0, lastTime = null;
+            
+            function animate(time) {
+                if (lastTime != null) {
+                    angle += (time - lastTime) * 0.001;
+                }
+                lastTime = time;
+                cat.style.top = (Math.sin(angle) * 20) + "px";
+                cat.style.left = (Math.cos(angle) * 200) + "px";
+                requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+        </script>
+        
+    </body>
+</html>

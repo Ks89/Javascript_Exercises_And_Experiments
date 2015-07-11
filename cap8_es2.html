@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+
+
+        <script>
+
+            //non si capiva un tubo, ho visto le soluzioni, ma era facile.
+
+            var box = {
+                locked : true,
+                unlock: function() { this.locked = false; },
+                lock: function() {this.locked = true; },
+                _content: [],
+                get content() {
+                    if(this.locked) throw new Error("Locked");
+                    return this._content;
+                }
+            };
+            
+            function withBoxUnlocked(body) {
+                var locked = box.locked;
+                if(!locked) {
+                    return body();
+                }
+                
+                box.unlock();
+                try {
+                    return body();
+                } finally {
+                    box.lock();
+                }
+                
+                
+            }
+
+            withBoxUnlocked(function() {
+              box.content.push("gold piece");
+            });
+
+            try {
+              withBoxUnlocked(function() {
+                throw new Error("Pirates on the horizon! Abort!");
+              });
+            } catch (e) {
+              console.log("Error raised:", e);
+            }
+            console.log(box.locked);
+            
+            
+        </script>
+
+
+
+    </body>
+</html>

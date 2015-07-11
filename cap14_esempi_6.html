@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <style>
+            body {
+                height: 200px;
+                background: beige;
+            }
+            .dot {
+                height: 8px;
+                width: 8px;
+                border-radius: 4px;
+                background: blue;
+                position: absolute;
+            }
+        </style>
+        <script>
+            
+            addEventListener("click", function(event) {
+                var dot = document.createElement("div");
+                dot.className = "dot";
+                dot.style.left = (event.pageX - 4) + "px";
+                dot.style.top = (event.pageY - 4) + "px";
+                document.body.appendChild(dot);
+            });
+            
+        </script>
+        
+    </body>
+</html>

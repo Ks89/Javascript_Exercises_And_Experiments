@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+
+        <input type="text">
+
+        <script>
+
+            //FATTO DA SOLO, MA NON VA
+            //ANCHE QUELLO DELLA SOLUZIONE NON FUNZIONA, NON SO PERCHE'
+            //sara' colpa di chrome aggiornato rispetto alla scrittura del libro
+           var input = document.querySelector("input");
+          input.addEventListener("keydown", function(event) {
+             if(event.keycode === 71 || event.keycode === 77 || event.keycode === 78 || 
+                     event.keycode === 51 || event.keycode === 57 || event.keycode === 58 ) {
+                 event.preventDefault();
+             } 
+          });
+        </script>
+
+    </body>
+</html>

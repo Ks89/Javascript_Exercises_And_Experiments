@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+
+
+        <script>
+
+
+            function getRange(start, end) {
+                var array = [];
+                for (var i = start; i <= end; i++) {
+                    array.push(i);
+                }
+                return array;
+            }
+            ;
+
+            function sumArray(array) {
+                var sum = 0;
+                for (var i = 0; i < array.length; i++) {
+                    sum = sum + array[i];
+                }
+                return sum;
+            };
+
+            function getRangeWithStep(start, end, step) {
+                if (step === null) step = 1;
+                var array = [];
+                if (step < 0) {
+                    for (var i = start; i >= end; i = i + step) {
+                        array.push(i);
+                    }
+                } else {
+                    for (var i = start; i <= end; i = i + step) {
+                        array.push(i);
+                    }
+                }
+                return array;
+            };
+
+            console.log(getRange(5, 12));
+            console.log(sumArray(getRange(5, 12)));
+            console.log(getRangeWithStep(1, 10, 2));
+            console.log(getRangeWithStep(5, 2, -1));
+        </script>
+
+
+
+    </body>
+</html>

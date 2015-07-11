@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+    <!-- Focus example with custom order with tabindex -->
+
+        <textarea></textarea>
+        <script>
+            var textarea = document.querySelector("textarea");
+            textarea.addEventListener("keydown", function(event){
+               //codice per f2 e' 112
+                if(event.keyCode == 113) {
+                    replaceSelection(textarea, "sdssdsd");
+                    event.preventDefault();
+                }
+            });
+
+            function replaceSelection(field, word) {
+                var from = field.selectionStart, to = field.selectionEnd;
+                field.value = field.value.slice(0,from) + word + field.value.slice(to);
+                field.selectionStart = field.selectionEnd = from + word.length;
+            }
+        </script>
+
+        
+    </body>
+</html>

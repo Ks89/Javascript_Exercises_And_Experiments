@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <!-- copia incolla da soluzioni non avevo voglia-->
+        
+        <h1>Heading with a <span>span</span> element.</h1>
+        <p>A paragraph with <span>one</span>, <span>two</span>
+            spans.</p>
+
+        <script>
+            function byTagNcc ame(node, tagName) {
+                var found = [];
+                tagName = tagName.toUpperCase();
+
+                function explore(node) {
+                  for (var i = 0; i < node.childNodes.length; i++) {
+                    var child = node.childNodes[i];
+                    if (child.nodeType == document.ELEMENT_NODE) {
+                      if (child.nodeName == tagName)
+                        found.push(child);
+                      explore(child);
+                    }
+                  }
+                }
+
+                explore(node);
+                return found;
+            }
+
+            console.log(byTagName(document.body, "h1").length);
+            console.log(byTagName(document.body, "span").length);
+            
+            var para = document.querySelector("p");
+            
+            console.log(byTagName(para, "span").length);
+        </script>
+        
+        
+    </body>
+</html>

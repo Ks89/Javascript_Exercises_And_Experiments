@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+   
+
+        <body>
+            <div id="wrapper">
+              <div data-tabname="one">Tab one</div>
+              <div data-tabname="two">Tab two</div>
+              <div data-tabname="three">Tab three</div>
+            </div>
+            <script>
+              //copiato e incollato da soluzioni, troppo incasinato, e poi in html5 lo si fa con
+              //la meta' della fatica, nn ha piu' senso questo esercizio
+              function asTabs(node) {
+                var tabs = [];
+                for (var i = 0; i < node.childNodes.length; i++) {
+                  var child = node.childNodes[i];
+                  if (child.nodeType == document.ELEMENT_NODE)
+                    tabs.push(child);
+                }
+
+                var tabList = document.createElement("div");
+                tabs.forEach(function(tab, i) {
+                  var button = document.createElement("button");
+                  button.textContent = tab.getAttribute("data-tabname");
+                  button.addEventListener("click", function() { 
+                      selectTab(i); 
+                  });
+                  
+                  tabList.appendChild(button);
+                });
+                node.insertBefore(tabList, node.firstChild);
+
+                function selectTab(n) {
+                  tabs.forEach(function(tab, i) {
+                    if (i == n)
+                      tab.style.display = "";
+                    else
+                      tab.style.display = "none";
+                  });
+                  for (var i = 0; i < tabList.childNodes.length; i++) {
+                    if (i == n)
+                      tabList.childNodes[i].style.background = "violet";
+                    else
+                      tabList.childNodes[i].style.background = "";
+                  }
+                }
+                selectTab(0);
+              }
+              asTabs(document.querySelector("#wrapper"));
+            </script>            
+        </body>
+</html>

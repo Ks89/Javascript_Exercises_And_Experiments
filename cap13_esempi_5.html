@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <p style="border: 3px solid red">
+            I'm boxed in
+        </p>
+        
+        
+        <script>
+            //provarlo in chrome nn nel browser integrato in netbeans
+            var para = document.body.getElementsByTagName("p")[0];
+            console.log("clientHeight:" , para.clientHeight);
+            console.log("offsetHeight" , para.offsetHeight);
+            
+            var rect = document.body.getElementsByTagName("p")[0].getBoundingClientRect();
+            console.log("left" , rect.left);
+            console.log("right" , rect.right);
+            console.log("top" , rect.top);
+            console.log("bottom" , rect.bottom);
+        </script>
+        
+    </body>
+</html>

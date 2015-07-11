@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+     
+        <script>
+            function get(url, callback) {
+                return new Promise(function(succeed, fail) {
+                    var req = new XMLHttpRequest();
+                    req.open("GET",url,true);
+                    req.addEventListener("load",function() {
+                        if(req.status < 400) 
+                            succeed(req.responseText);
+                        else 
+                            fail(new Error("Request failed: " + req.statusText));
+                });
+                req.addEventListener("error",function() {
+                   fail(new Error("Network error")); 
+                });
+                req.send(null);
+                });
+            }
+            
+            function getJSON(url) {
+                return get(url).then(JSON.parse);
+            }
+            
+            get("xml/fruits.xml").then(function(text) {
+                console.log("file xml " + text);
+            }, function(error) {
+                console.log("Failed to fetch xml: " + error);
+            });
+            
+            getJSON("xml/fruits.json").then(function(text) {
+                console.log("file json " + text);
+            }, function(error) {
+                console.log("Failed to fetch json: " + error);
+            });
+        </script>
+    </body>
+</html>
