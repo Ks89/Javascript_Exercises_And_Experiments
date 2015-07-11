@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+
+        <input type="file" multiple>
+
+        <script>
+            var input = document.querySelector("input");
+
+            input.addEventListener("change", function() {
+                Array.prototype.forEach.call(input.files, function readFile(file) {
+                    return new Promise(function (succeed, fail) {
+                        var reader = new FileReader();
+                        reader.addEventListener("load", function () {
+                            console.log("load");
+                            succeed(reader.result);
+                        });
+                        reader.addEventListener("error", function () {
+                            console.log("error");
+                            fail(reader.error);
+                        });
+
+                        reader.readAsText(file);
+                    })
+                });
+            });
+
+
+
+
+        </script>
+
+        
+    </body>
+</html>

@@ -12,13 +12,21 @@ and open the template in the editor.
     </head>
     <body>
 
-        <input type="checkbox" id="purple">
-        <label for="purple">Make this page purple</label>
+
+        <input type="file">
+
         <script>
-            var checkbox = document.querySelector("#purple");
-            checkbox.addEventListener("change", function() {
-                document.body.style.background =
-                checkbox.checked ? "mediumpurple" : "";
+            var input = document.querySelector("input");
+
+            input.addEventListener("change", function() {
+                if(input.files.length > 0) {
+                    var file = input.files[0];
+                    console.log("You choose", file.name);
+
+                    if(file.type) {
+                        console.log("it has type", file.type);
+                    }
+                }
             });
         </script>
 
