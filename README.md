@@ -11,6 +11,7 @@ I'll post here some stupid exercise and experiment in the future.
 The MIT License (MIT)
 
 Original work Copyright (c) 2014 Marijn Haverbeke
+
 Modified work Copyright (c) 2015 Stefano Cappa  
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
